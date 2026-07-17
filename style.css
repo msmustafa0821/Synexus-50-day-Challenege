@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --primary-color:  #2563EB;
+    --text-color:#1F2937;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color: var(--text-color);
+}
+h1{
+    color:var(--primary-color);
+    margin-bottom: 20px;
+}
