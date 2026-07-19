@@ -36,3 +36,30 @@ nav a:hover {
     text-decoration: none;
     color: var(--primary-color);
 }
+.profile-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   background-color: #f9f9f9;
+   padding: 20px;
+   border-radius: 8px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.profile-card h3{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.profile-card p{
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+.profile-card a{
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.profile-card :hover{
+    transform: translateY(-5px);
+}
