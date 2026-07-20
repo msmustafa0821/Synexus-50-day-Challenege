@@ -60,6 +60,19 @@ nav a:hover {
     padding: 10px 15px;
     border-radius: 5px;
 }
-.profile-card :hover{
+.profile-card:hover{
     transform: translateY(-5px);
+}
+.initiatives-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.initiatives-card{
+    background-color: beige;
+    padding: 20px;
+    border-radius: 8px;
+}
+.featured{
+    grid-column: span 2;
 }
