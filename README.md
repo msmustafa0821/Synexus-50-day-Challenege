@@ -1,82 +1,125 @@
-📅 Day 05 – CSS Grid Architecture (The Initiatives Gallery)
-📌 Overview
+# Day 06 – Responsive Engineering & Media Queries
 
-Today, I learned how to use CSS Grid, a powerful layout system designed for creating 2-dimensional layouts. Unlike Flexbox, which arranges elements in a single row or column, CSS Grid allows content to be organized into both rows and columns, making it ideal for galleries, dashboards, and card-based layouts.
+## 📅 Date
+Day 06 of the Synexus 50-Day Web Development Challenge
 
-For this challenge, I redesigned the Initiatives section into a structured grid of reusable cards and explored how Grid automatically manages spacing and alignment.
+## 🎯 Objective
 
-🚀 What I Built
+The goal of Day 6 was to make the website responsive so that it adapts to different screen sizes such as desktops, tablets, and mobile phones. I learned how media queries allow a website to change its layout based on the viewport width, improving readability and user experience.
 
+---
 
-Created a parent container using .initiatives-grid.
-Added three reusable initiative cards.
-Displayed the cards in three equal columns using CSS Grid.
-Added spacing between cards with the gap property.
-Styled each card with:
-Background color
-Padding
-Rounded corners
-Completed the Bonus Challenge by making the first initiative a featured card spanning two columns.
-📚 Concepts Learned
-🔹 CSS Grid
+## 🛠️ Concepts Learned
 
-Learned how CSS Grid creates a 2-dimensional layout, allowing elements to be arranged in both rows and columns.
+- Responsive Web Design
+- CSS Media Queries
+- Breakpoints
+- Desktop-First Approach
+- Mobile-Friendly Layouts
+- Responsive Navigation
+- Responsive CSS Grid
+- Fluid Typography (Bonus)
 
-display: grid;
-🔹 Grid Template Columns
+---
 
-Defined three equal-width columns using fractional units.
+## 💻 What I Implemented
 
-grid-template-columns: repeat(3, 1fr);
+### ✅ Tablet Layout (900px)
 
-I learned that:
+- Used a media query for screens smaller than **900px**.
+- Changed the initiatives grid from **3 columns** to **2 columns**.
 
-repeat(3, 1fr) creates 3 equal columns.
-fr (fractional unit) automatically divides the available space equally.
-No manual width calculations are required.
-🔹 Gap Property
+```css
+@media (max-width: 900px){
+    .initiatives-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+```
 
-Used the gap property to create consistent spacing between grid items.
+---
 
-gap: 30px;
+### ✅ Mobile Layout (600px)
 
-This keeps the layout clean without adding margins to individual cards.
+- Used another media query for screens smaller than **600px**.
+- Changed the initiatives grid to a single column.
+- Stacked the navigation vertically.
+- Changed the navigation links to display vertically.
 
-🔹 Reusable Components
+```css
+@media (max-width: 600px){
+    .initiatives-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
 
-Created reusable initiative cards with consistent styling.
+    nav{
+        flex-direction: column;
+        align-items: center;
+    }
 
-background-color;
-padding;
-border-radius;
+    nav ul{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+```
 
-This reinforced the concept of designing once and reusing multiple times.
+---
 
-🔹 Featured Card (Bonus)
+### ✅ Featured Card Fix
 
-Implemented a featured initiative using:
+While testing on mobile, I discovered that my featured card was still trying to span two columns even though only one column existed.
 
-grid-column: span 2;
+Desktop:
 
-This allows one card to span the width of two grid columns, demonstrating the flexibility of CSS Grid.
+```css
+.featured{
+    grid-column: span 2;
+}
+```
 
-💡 Key Takeaways
-CSS Grid is best suited for 2-dimensional layouts.
-The parent container controls the grid layout.
-fr units distribute space automatically.
-gap provides clean spacing between grid items.
-Grid eliminates the need to calculate widths manually.
-Components can be reused while maintaining a consistent design.
-🐞 Challenges Faced
-Initially confused between Flexbox and Grid.
-Learned that display: grid must be applied to the parent container, not the individual cards.
-Corrected class naming inconsistencies to ensure HTML and CSS selectors matched.
-Understood how grid-column: span 2; changes the layout by allowing one card to occupy multiple columns.
-🎯 Outcome
+Mobile Fix:
 
-By the end of Day 5, I successfully built a structured Initiatives Gallery using CSS Grid and understood the difference between Flexbox (1-dimensional layouts) and Grid (2-dimensional layouts).
+```css
+@media (max-width:600px){
+    .featured{
+        grid-column: span 1;
+    }
+}
+```
 
-This foundation will be essential for building responsive layouts and more complex web interfaces in the upcoming days.
+This ensured the layout remained clean on smaller screens.
+
+---
+
+### ✅ Bonus Challenge
+
+Implemented responsive typography using viewport units.
+
+```css
+h1{
+    font-size: 8vw;
+}
+```
+
+I also learned that using `clamp()` is a better professional approach because it prevents text from becoming too large or too small on different screen sizes.
+
+---
+
+## 🧠 Key Learnings
+
+- Media queries allow layouts to adapt to different screen sizes.
+- Breakpoints help create responsive designs.
+- CSS is read from top to bottom, so media queries should be placed at the end of the stylesheet.
+- Responsive design often requires overriding existing desktop styles.
+- CSS Grid layouts can be modified without changing the HTML.
+- Responsive websites provide a much better user experience across devices.
+
+---
+
+## 🚀 Outcome
+
+Successfully converted the desktop-only webpage into a responsive website that works across desktop, tablet, and mobile devices while maintaining a clean and structured layout.
 
 
 ## 👨‍💻 Author
