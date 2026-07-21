@@ -14,6 +14,7 @@ body{
 h1{
     color:var(--primary-color);
     margin-bottom: 20px;
+    font-size: 8vw;
 }
 nav{
     display: flex;
@@ -73,6 +74,27 @@ nav a:hover {
     padding: 20px;
     border-radius: 8px;
 }
-.featured{
+/*.featured{
     grid-column: span 2;
+}*/
+@media (max-width: 900px){
+    .initiatives-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px){
+    .initiatives-grid{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .featured{
+        grid-column: span 1;
+    }
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
 }
