@@ -98,3 +98,36 @@ nav a:hover {
         align-items: center;
     }
 }
+.membership-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.membership-form input,
+.membership-form textarea{
+    background: none;
+    padding:12px 15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:1rem;
+}
+.membership-form input:focus, 
+.membership-form textarea:focus {
+    outline:none;
+    border-color: var(--primary-color);
+}
+.membership-form button{
+    background-color: var(--primary-color);
+    color:beige;
+    padding: 12px 15px;
+    border:none;
+    border-radius: 8px;
+    cursor:pointer;
+}
+.membership-form button:hover{
+    background-color: #1E40AF;
+}
+.membership-form button:disabled{
+    background-color:gray ;
+    cursor: not-allowed;
+}
