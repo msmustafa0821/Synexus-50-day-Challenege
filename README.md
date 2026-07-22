@@ -1,128 +1,168 @@
-# Day 06 – Responsive Engineering & Media Queries
+# Synexus 50-Day Challenge — Day 7
 
-## 📅 Date
-Day 06 of the Synexus 50-Day Web Development Challenge
+# Membership Application Form UI & Interactive States
 
-## 🎯 Objective
-
-The goal of Day 6 was to make the website responsive so that it adapts to different screen sizes such as desktops, tablets, and mobile phones. I learned how media queries allow a website to change its layout based on the viewport width, improving readability and user experience.
+A responsive and accessible membership application form built using HTML5 and CSS3. This project focuses on form architecture, custom input styling, and interactive states such as `:focus`, `:hover`, and `:disabled`.
 
 ---
 
-## 🛠️ Concepts Learned
+## 📖 About
 
-- Responsive Web Design
-- CSS Media Queries
-- Breakpoints
-- Desktop-First Approach
-- Mobile-Friendly Layouts
-- Responsive Navigation
-- Responsive CSS Grid
-- Fluid Typography (Bonus)
+This challenge demonstrates how to build a clean, standardized form interface by overriding browser default styles and providing clear visual feedback when users interact with form fields.
 
----
+The form includes:
 
-## 💻 What I Implemented
-
-### ✅ Tablet Layout (900px)
-
-- Used a media query for screens smaller than **900px**.
-- Changed the initiatives grid from **3 columns** to **2 columns**.
-
-```css
-@media (max-width: 900px){
-    .initiatives-grid{
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-```
+* Full Name input
+* Email Address input
+* Motivation textarea
+* Submit button with hover and disabled states
 
 ---
 
-### ✅ Mobile Layout (600px)
+## 🛠️ Technologies Used
 
-- Used another media query for screens smaller than **600px**.
-- Changed the initiatives grid to a single column.
-- Stacked the navigation vertically.
-- Changed the navigation links to display vertically.
-
-```css
-@media (max-width: 600px){
-    .initiatives-grid{
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    nav{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav ul{
-        flex-direction: column;
-        align-items: center;
-    }
-}
-```
+* HTML5
+* CSS3
 
 ---
 
-### ✅ Featured Card Fix
+## 🎯 Concepts Practiced
 
-While testing on mobile, I discovered that my featured card was still trying to span two columns even though only one column existed.
+### HTML5 Form Architecture
 
-Desktop:
+* `<form>`
+* `<label>`
+* `<input>`
+* `<textarea>`
+* `<button>`
 
-```css
-.featured{
-    grid-column: span 2;
-}
-```
+### Accessibility
 
-Mobile Fix:
+* Linked every `label` using the `for` attribute
+* Matched each `for` value with the corresponding `id`
+* Clicking a label automatically focuses the related input field
 
-```css
-@media (max-width:600px){
-    .featured{
-        grid-column: span 1;
-    }
-}
-```
+### CSS Interactive States
 
-This ensured the layout remained clean on smaller screens.
+* `:focus`
+* `:hover`
+* `:disabled`
 
 ---
 
-### ✅ Bonus Challenge
+## ✨ Features Implemented
 
-Implemented responsive typography using viewport units.
+### Custom Input Styling
 
-```css
-h1{
-    font-size: 8vw;
-}
+* Removed browser default appearance
+* Added consistent padding
+* Added subtle borders
+* Added rounded corners
+
+### Focus State
+
+When a user clicks inside a field:
+
+* The border color changes to the primary blue color
+* The default outline is replaced with a custom focus style
+
+### Button States
+
+#### Normal
+
+* Blue background
+* White text
+* Rounded corners
+
+#### Hover
+
+* Darker blue background
+
+#### Disabled
+
+* Gray background
+* `not-allowed` cursor
+
+---
+
+## 📂 Project Structure
+
+```text
+Synexus-50-Day-Challenge/
+│
+├── index.html
+├── style.css
+├── README.md
+├── Synexus.png
+└── member 1.png
 ```
-
-I also learned that using `clamp()` is a better professional approach because it prevents text from becoming too large or too small on different screen sizes.
 
 ---
 
 ## 🧠 Key Learnings
 
-- Media queries allow layouts to adapt to different screen sizes.
-- Breakpoints help create responsive designs.
-- CSS is read from top to bottom, so media queries should be placed at the end of the stylesheet.
-- Responsive design often requires overriding existing desktop styles.
-- CSS Grid layouts can be modified without changing the HTML.
-- Responsive websites provide a much better user experience across devices.
+* How labels and inputs are connected for accessibility
+* Why visual feedback is important in forms
+* How to create reusable form styles
+* How pseudo-classes improve user experience
+* How to debug CSS selector mismatches
+
+---
+
+## 🐛 Bug Fixed
+
+### CSS class mismatch
+
+Initially, the HTML used:
+
+```html
+class="membership-application"
+```
+
+while the CSS targeted:
+
+```css
+.membership-form
+```
+
+Because the class names did not match, none of the form styles were applied.
+
+### Solution
+
+Updated the HTML section to:
+
+```html
+<section class="membership-form">
+```
+
+and targeted the form correctly in CSS:
+
+```css
+.membership-form form
+```
 
 ---
 
 ## 🚀 Outcome
 
-Successfully converted the desktop-only webpage into a responsive website that works across desktop, tablet, and mobile devices while maintaining a clean and structured layout.
+Built a fully functional and accessible membership application form with professional input styling and interactive feedback states, making the Synexus landing page feel much closer to a real production-ready application.
 
+---
+
+## 📅 Challenge Progress
+
+* [x] Day 1 — Semantic HTML
+* [x] Day 2 — CSS Foundations
+* [x] Day 3 — Flexbox Architecture
+* [x] Day 4 — Component Design
+* [x] Day 5 — CSS Grid Architecture
+* [x] Day 6 — Responsive Engineering
+* [x] Day 7 — Form UI & Interactive States
+
+---
 
 ## 👨‍💻 Author
 
 **Mohammed Shaik Mustafa**
+
 
