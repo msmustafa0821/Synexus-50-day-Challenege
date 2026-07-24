@@ -1,168 +1,27 @@
-# Synexus 50-Day Challenge — Day 7
+🚀 Synexus 50-Day Web Development Challenge📅 Day 8: UI Micro-Interactions & Hover State Enhancements🎯 ObjectiveElevate the user experience of the Synexus landing page by implementing smooth, accessible, and high-performance micro-interactions using modern CSS properties.🔑 Key ImplementationsProfile Card Elevation: Engineered a clean 3D lift effect on .profile-card:hover using transform: translateY(-5px) paired with multi-layered box-shadow transitions.Navigation Link Hover Effects: Integrated smooth color transitions (transition: color 0.3s ease) across global navigation anchors for immediate visual feedback.Form CTA Polish: Added interactive state feedback on the membership submission button including hover elevation, active press-down states, and disabled styling (cursor: not-allowed).Performance Optimization: Leveraged CSS GPU-accelerated properties (transform, opacity) over costly layout reflows (top, margin) to maintain a locked 60fps interaction pipeline.🛠️ Key Code SnippetCSS/* Card Lift & Shadow Transition */
+.profile-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-# Membership Application Form UI & Interactive States
-
-A responsive and accessible membership application form built using HTML5 and CSS3. This project focuses on form architecture, custom input styling, and interactive states such as `:focus`, `:hover`, and `:disabled`.
-
----
-
-## 📖 About
-
-This challenge demonstrates how to build a clean, standardized form interface by overriding browser default styles and providing clear visual feedback when users interact with form fields.
-
-The form includes:
-
-* Full Name input
-* Email Address input
-* Motivation textarea
-* Submit button with hover and disabled states
-
----
-
-## 🛠️ Technologies Used
-
-* HTML5
-* CSS3
-
----
-
-## 🎯 Concepts Practiced
-
-### HTML5 Form Architecture
-
-* `<form>`
-* `<label>`
-* `<input>`
-* `<textarea>`
-* `<button>`
-
-### Accessibility
-
-* Linked every `label` using the `for` attribute
-* Matched each `for` value with the corresponding `id`
-* Clicking a label automatically focuses the related input field
-
-### CSS Interactive States
-
-* `:focus`
-* `:hover`
-* `:disabled`
-
----
-
-## ✨ Features Implemented
-
-### Custom Input Styling
-
-* Removed browser default appearance
-* Added consistent padding
-* Added subtle borders
-* Added rounded corners
-
-### Focus State
-
-When a user clicks inside a field:
-
-* The border color changes to the primary blue color
-* The default outline is replaced with a custom focus style
-
-### Button States
-
-#### Normal
-
-* Blue background
-* White text
-* Rounded corners
-
-#### Hover
-
-* Darker blue background
-
-#### Disabled
-
-* Gray background
-* `not-allowed` cursor
-
----
-
-## 📂 Project Structure
-
-```text
-Synexus-50-Day-Challenge/
-│
-├── index.html
-├── style.css
-├── README.md
-├── Synexus.png
-└── member 1.png
-```
-
----
-
-## 🧠 Key Learnings
-
-* How labels and inputs are connected for accessibility
-* Why visual feedback is important in forms
-* How to create reusable form styles
-* How pseudo-classes improve user experience
-* How to debug CSS selector mismatches
-
----
-
-## 🐛 Bug Fixed
-
-### CSS class mismatch
-
-Initially, the HTML used:
-
-```html
-class="membership-application"
-```
-
-while the CSS targeted:
-
-```css
-.membership-form
-```
-
-Because the class names did not match, none of the form styles were applied.
-
-### Solution
-
-Updated the HTML section to:
-
-```html
-<section class="membership-form">
-```
-
-and targeted the form correctly in CSS:
-
-```css
-.membership-form form
-```
-
----
-
-## 🚀 Outcome
-
-Built a fully functional and accessible membership application form with professional input styling and interactive feedback states, making the Synexus landing page feel much closer to a real production-ready application.
-
----
-
-## 📅 Challenge Progress
-
-* [x] Day 1 — Semantic HTML
-* [x] Day 2 — CSS Foundations
-* [x] Day 3 — Flexbox Architecture
-* [x] Day 4 — Component Design
-* [x] Day 5 — CSS Grid Architecture
-* [x] Day 6 — Responsive Engineering
-* [x] Day 7 — Form UI & Interactive States
-
----
-
-## 👨‍💻 Author
-
-**Mohammed Shaik Mustafa**
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
 
 
+
+
+📅 Day 9: Web Accessibility (A11y) Standards & Audit🎯 ObjectiveAudit and refactor the codebase to align with WCAG 2.1 AAA guidelines, ensuring keyboard accessibility, screen-reader compatibility, and achieving a 100/100 Lighthouse Accessibility score.🔑 Key ImplementationsKeyboard Skip Link: Built a visually hidden .skip-link element that brings keyboard users directly to <main id="main-content">, bypassing repetitive navigation menus upon tapping Tab.Keyboard Focus Ring (:focus-visible): Applied global :focus-visible outline indicators to all interactive elements (a, button, input, textarea) using custom CSS variables, preventing focus-state loss during keyboard navigation.Screen Reader Audit: Upgraded all alt text attributes to provide meaningful context (e.g., changing alt="Logo" to alt="Synexus Community Logo") and verified structural heading hierarchy (h1 $\rightarrow$ h3).Color Contrast Refactoring: Adjusted body and subtext color variables (var(--text-color)) against light background containers to pass strict WCAG 4.5:1 minimum contrast thresholds.Automated Testing: Conducted Chrome Lighthouse audits to verify accessibility metrics and DOM compliance.🛠️ Key Code SnippetHTML<!-- Accessibility: Keyboard Skip Navigation Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+CSS/* Accessibility: Keyboard-only Focus Ring Indicator */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+📊 Tech Stack & StandardsLanguages: HTML5, CSS3Layout Engine: CSS Grid, Flexbox, Custom CSS Variables (:root)Standards: WCAG 2.1 Guidelines, Chrome Lighthouse Audits
