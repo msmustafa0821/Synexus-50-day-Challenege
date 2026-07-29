@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synexus APP</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <header>
         <nav>
             <img src="Synexus.png" alt="synexus community Logo" class="logo">
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#Home">Home</a></li>
                 <li><a href="#About">About</a></li>
                 <li><a href="#Initiatives">Initiatives</a></li>
                 <li><a href="#CoreTeam">Core Team</a></li>
             </ul>
+            <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" >
+                     ☰
+             </button>
         </nav>
         </header>
         <main id="main-content">
@@ -31,20 +35,9 @@
                 </section>
                 <section id="Initiatives">
                     <h2> Our Initiatives</h2>
-                    <div class="initiatives-grid">
-                      <div class="initiatives-card featured">
-                        <h3> Initiative 1</h3>
-                        <p>Synexus community is a coding event where students collaborate to solve real-world problems using innovative technology.</p>
-                      </div>
-                      <div class="initiatives-card">
-                        <h3> Initiative 2</h3>
-                        <p>Synexus mentorship program connects students with experienced engineers for guidance and support in their career development.</p>
-                      </div>
-                      <div class="initiatives-card">
-                        <h3> Initiative 3</h3>
-                        <p>Synexus workshops provide hands-on learning experiences in various engineering disciplines.</p>
-                      </div>
-                    </div>  
+                    <div class="initiatives-grid" id="dynamic-grid">
+                        
+                    </div>
                 </section>
                 <section id="CoreTeam">
                     <h2> Core Team</h2>

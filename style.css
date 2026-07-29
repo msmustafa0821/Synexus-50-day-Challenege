@@ -68,7 +68,7 @@ section.hero{
     transition: background-color 0.3s ease,
                 transform 0.3s ease;
 }
-.hero-button:hover{
+.Hero-button:hover{
     background-color: #1E40AF;
     transform: translateY(-3px);
 }
@@ -125,6 +125,17 @@ nav a:hover {
 /* ====================================
    INITIATIVES
 ==================================== */
+.initiative-card{
+    background-color: beige;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.initiative-card:hover{
+    transform: translateY(-5px);
+}
 .initiatives-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -135,12 +146,15 @@ nav a:hover {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
-.initiatives-card{
-    background-color: beige;
-    padding: 20px;
-    border-radius: 8px;
-}
 
+.menu-toggle{
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+}
 @media (max-width: 900px){
     .initiatives-grid{
         grid-template-columns: repeat(2, 1fr);
@@ -149,25 +163,38 @@ nav a:hover {
     grid-template-columns: repeat(2, 1fr);
 }
 }
+
 @media (max-width: 600px){
     .initiatives-grid{
         grid-template-columns: repeat(1, 1fr);
     }
     .team-grid{
     grid-template-columns:1fr;
-}
+    }
     .featured{
         grid-column: span 1;
     }
     nav {
-        flex-direction: column;
+        
+        justify-content: space-between;
         align-items: center;
-    }
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
+        flex-wrap: wrap;
 
+    }
+    .menu-toggle{
+          display: block;
+    }
+   .nav-links{
+       display: none;
+       flex-direction: column;
+       align-items: center;
+       width: 100%;
+       text-align: center;
+         gap: 1rem;
+         }
+    .nav-active{
+        display: flex;
+        }
 }
 /* ====================================
    MEMBERSHIP FORM
@@ -269,4 +296,11 @@ textarea:focus-visible {
 }
 .active-state {
     color: var(--primary-color);
+}
+.active-project{
+    border-left: 8px solid lime;
+}
+
+.completed-project {
+    border-left: 8px solid gray;
 }
