@@ -1,323 +1,94 @@
-# 🚀 Synexus 50-Day Web Development Challenge
-
-## Days 15–19: Advanced JavaScript & Dynamic UI Engineering
-
-This phase focused on transforming static web pages into interactive applications using **Vanilla JavaScript**.
-
-The goal was to understand how modern websites manage dynamic content, user interactions, browser storage, and optimized event handling without relying on external frameworks.
-
----
-
-# 📅 Day 15: Dynamic Content Rendering & Search Functionality
+# 🗓️ Day 20 – Stateful UI Architecture & CRUD Logic (Task Tracker)
 
 ## 🎯 Objective
 
-Convert static initiative cards into dynamically generated content using JavaScript.
-
-Instead of manually writing every project card in HTML, project data was stored inside JavaScript objects and rendered dynamically into the DOM.
+Built a fully functional **Task Tracker** using **Vanilla JavaScript** by implementing a complete CRUD (Create, Read, Update, Delete) workflow. This project introduced state-driven UI architecture, where the application state controls what is displayed on the screen.
 
 ---
 
-## 🛠️ Concepts Learned
+## 🚀 Features Implemented
 
-- JavaScript Arrays & Objects
-- Template Literals
-- DOM Manipulation
-- Dynamic HTML Generation
-- Array Methods
-
----
-
-## ⚙️ Implementation
-
-Created a project data structure:
-
-```javascript
-const projectsData = [
-    {
-        title: "AI Research Lab",
-        description: "Building AI-powered solutions",
-        status: "Active"
-    }
-];
-```
-
-Created a reusable rendering function:
-
-```javascript
-function renderProjects(dataArray){
-
-}
-```
-
-The function dynamically generated initiative cards and inserted them into the page.
+* ✅ Created a task input field and add task button.
+* ✅ Managed tasks using a JavaScript state array.
+* ✅ Added new tasks dynamically.
+* ✅ Rendered tasks from the application state.
+* ✅ Marked tasks as completed using checkboxes.
+* ✅ Deleted tasks using Event Delegation.
+* ✅ Re-rendered the UI after every state change.
+* ✅ Stored tasks in LocalStorage.
+* ✅ Restored saved tasks automatically after page refresh.
 
 ---
 
-## 🔍 Search Feature
+## 🛠️ Technologies Used
 
-Implemented real-time project filtering using:
-
-- `input` event listener
-- `filter()` array method
-- Dynamic re-rendering
-
-Users can now search projects instantly.
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* DOM Manipulation
+* LocalStorage API
 
 ---
 
-## 🧠 Key Learning
+## 🧠 JavaScript Concepts Learned
 
-Learned how modern applications generate UI components from data instead of hardcoding HTML.
+* State Management
+* CRUD Operations
+* Dynamic DOM Rendering
+* Event Delegation
+* Array Manipulation
 
----
-
-<br>
-
-# 📅 Day 16: Client-Side State Management
-
-## 🎯 Objective
-
-Improve user experience by preserving user preferences and application states.
-
----
-
-## 🛠️ Concepts Learned
-
-- Browser Storage
-- LocalStorage API
-- Persistent UI State
+  * `push()`
+  * `find()`
+  * `filter()`
+* Template Literals
+* LocalStorage Persistence
+* Conditional Rendering
 
 ---
 
-## ⚙️ Implementation
+## 📂 Project Workflow
 
-Implemented theme persistence:
+### 🟢 Create
 
-```javascript
-localStorage.setItem(
-"synexus_theme",
-"dark"
-);
-```
+* Accepted user input.
+* Generated a unique task object using `Date.now()`.
+* Added the object to the application state.
 
-On page reload:
+### 🔵 Read
 
-```javascript
-localStorage.getItem("synexus_theme");
-```
+* Rendered every task from the `taskState` array.
+* Generated task elements dynamically using JavaScript.
 
-The website remembers the user's selected theme.
+### 🟡 Update
 
----
+* Toggled a task's completed status.
+* Applied visual styling to completed tasks.
 
-## 🧠 Key Learning
+### 🔴 Delete
 
-Learned how websites store and restore user preferences without databases.
+* Removed tasks from the state using `Array.filter()`.
+* Automatically refreshed the UI after deletion.
 
 ---
 
-<br>
+## 💾 LocalStorage Integration
 
-# 📅 Day 17: Advanced UI Interactions
+To provide persistence:
 
-## 🎯 Objective
+* Saved the task list after every add, update, or delete operation.
+* Loaded previously saved tasks when the page was refreshed.
 
-Create smoother user experiences by adding interactive components.
-
----
-
-## 🛠️ Concepts Learned
-
-- DOM State Updates
-- Timers
-- Dynamic Content Changes
-- User Interaction Handling
+This ensures the task tracker maintains its state even after closing or reloading the browser.
 
 ---
 
-## ⚙️ Implementation
+## 🎯 Outcome
 
-Built interactive components that respond to user actions and update the interface dynamically.
-
-Focused on:
-
-- Improving usability
-- Managing UI states
-- Creating responsive interactions
+This project strengthened my understanding of **state-driven programming** and demonstrated how modern frontend applications keep the user interface synchronized with application data. By implementing a complete CRUD system with LocalStorage, I gained practical experience building interactive web applications using only Vanilla JavaScript.
 
 ---
 
-## 🧠 Key Learning
+## 📌 Challenge Status
 
-Understanding how JavaScript controls the behavior layer of modern websites.
-
----
-
-<br>
-
-# 📅 Day 18: Interactive Testimonials Carousel
-
-## 🎯 Objective
-
-Build an automatic and manual testimonial slider.
-
----
-
-## 🛠️ Concepts Learned
-
-- Arrays for structured data
-- setInterval()
-- Event Listeners
-- State Tracking
-
----
-
-## ⚙️ Implementation
-
-Created testimonial data:
-
-```javascript
-const testimonialsData = [
-    {
-        name:"Frontend Engineer",
-        quote:"Building projects improved my skills."
-    }
-];
-```
-
-Managed current slide using:
-
-```javascript
-let currentIndex = 0;
-```
-
----
-
-## Features Added
-
-✅ Automatic testimonial rotation  
-✅ Previous button  
-✅ Next button  
-✅ Dynamic content updates  
-
----
-
-## 🧠 Key Learning
-
-Learned how websites maintain UI state and update content without page reloads.
-
----
-
-<br>
-
-# 📅 Day 19: Event Delegation & Dynamic Modal System
-
-## 🎯 Objective
-
-Implement optimized event handling and create a dynamic project details modal.
-
----
-
-# 🛠️ Concepts Learned
-
-- Event Bubbling
-- Event Delegation
-- e.target
-- closest()
-- data attributes
-- Modal Architecture
-
----
-
-# ⚡ Event Delegation
-
-Instead of adding listeners to every button:
-
-```javascript
-button.addEventListener()
-```
-
-Implemented one listener on the parent container:
-
-```javascript
-dynamicGrid.addEventListener("click",(e)=>{
-
-});
-```
-
-This improves performance and supports dynamically created elements.
-
----
-
-# 🔎 Identifying Click Targets
-
-Used:
-
-```javascript
-e.target.closest(".view-btn")
-```
-
-to find the correct button regardless of where inside the button the user clicks.
-
----
-
-# 🪟 Dynamic Modal Features
-
-Implemented:
-
-✅ View Details button  
-✅ Dynamic project title loading  
-✅ Modal opening  
-✅ Close button  
-✅ Overlay click close  
-✅ Escape key close  
-
----
-
-# 🧠 Key Learning
-
-Event Delegation allows applications to efficiently manage thousands of dynamic elements using minimal event listeners.
-
----
-
-# 📚 Overall Skills Gained (Days 15–19)
-
-Through these challenges, I strengthened my understanding of:
-
-- JavaScript DOM manipulation
-- Dynamic rendering systems
-- Browser storage
-- UI state management
-- Array-based data handling
-- Event-driven programming
-- Performance optimization
-- Interactive web components
-
----
-
-# 🚀 Project Progress
-
-Synexus Core Platform evolved from a static website into a dynamic JavaScript-powered application with:
-
-✅ Dynamic project cards  
-✅ Search functionality  
-✅ Persistent theme settings  
-✅ Interactive carousel  
-✅ Dynamic modal system  
-✅ Optimized event architecture  
-
----
-
-## Technologies Used
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- DOM API
-- LocalStorage API
-
----
-
-**Synexus 50-Day Web Development Challenge**  
-Progress: Days 15–19 Completed ✅
+✅ **Day 20 Completed Successfully**
