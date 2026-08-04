@@ -19,9 +19,12 @@
                 <li><a href="#Initiatives">Initiatives</a></li>
                 <li><a href="#CoreTeam">Core Team</a></li>
             </ul>
-            <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false" >
-                     ☰
+           <button id="theme-toggle" aria-label="Toggle Theme">
+                 🌙
              </button>
+         <button class="menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
+         ☰
+        </button>
         </nav>
         </header>
         <main id="main-content">
@@ -35,9 +38,12 @@
                 </section>
                 <section id="Initiatives">
                     <h2> Our Initiatives</h2>
+                    <input
+                    type="text"
+                    id="search-projects"
+                    placeholder="Search initiatives...">
                     <div class="initiatives-grid" id="dynamic-grid">
-                        
-                    </div>
+                        </div>
                 </section>
                 <section id="CoreTeam">
                     <h2> Core Team</h2>
@@ -72,7 +78,19 @@
                         <label for="why-join">Why do you want to join Synexus?</label>
                         <textarea id="why-join" name="why-join" rows="5" required></textarea>
                         <button type="submit">Submit Application</button>
+                        <p id="save-status"></p>
                     </form>
+                </section>
+                <section class="testimonials">
+                            <h2>Community Testimonials</h2>
+                            <div id="testimonial-container">
+                                <h3 id="member-name"></h3>
+                                <p id="member-quote"></p>
+                            </div>
+                            <div class="testimonial-controls">
+                                   <button id="prev-btn">← Previous</button>
+                                   <button id="next-btn">Next →</button>
+                            </div>
                 </section>
                 <footer>
                     <p>© 2026 Synexus Community</p>
@@ -83,5 +101,17 @@
                     
 
         </main>
+<div class="modal-overlay">
+    <div class="modal">
+        <button class="close-modal">&times;</button>
+
+        <h2 class="modal-title"></h2>
+
+        <p>
+            This project demonstrates Synexus engineering principles and
+            modern web development practices.
+        </p>
+    </div>
+</div>
 </body>
 </html>
