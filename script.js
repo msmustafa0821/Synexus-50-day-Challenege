@@ -271,3 +271,75 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
+let taskState = JSON.parse(localStorage.getItem("taskState")) || [];
+function saveTasks() {
+    localStorage.setItem("taskState", JSON.stringify(taskState));
+}
+const taskInput = document.querySelector("#task-input");
+const addTaskBtn = document.querySelector("#add-task-btn");
+const taskList = document.querySelector("#task-list");
+
+addTaskBtn.addEventListener("click", () => {
+
+
+const taskText = taskInput.value.trim();
+
+if (taskText === "") {
+    return;
+}
+
+const newTask = {
+    id: Date.now(),
+    text: taskText,
+    completed: false
+};
+
+taskState.push(newTask);
+saveTasks();
+renderTasks();
+taskInput.value = "";
+});
+
+function renderTasks() {
+  taskList.innerHTML = "";
+  taskState.forEach((task) => {
+      const li = document.createElement("li");
+    li.innerHTML = `
+         <input
+           type="checkbox"
+          data-id="${task.id}"
+         ${task.completed ? "checked" : ""}
+      >
+
+   <span class="${task.completed ? "completed-task" : ""}">
+    ${task.text}
+    </span>
+
+    <button
+        class="delete-btn"
+        data-id="${task.id}">
+        &times;
+    </button>
+  `;
+   taskList.appendChild(li);
+});
+}
+taskList.addEventListener("click", (e) => {
+
+    if (e.target.classList.contains("delete-btn")) {
+
+        const targetId = Number(e.target.getAttribute("data-id"));
+
+        taskState = taskState.filter((task) => task.id !== targetId);
+        saveTasks();
+        renderTasks();
+    }
+   if (e.target.type === "checkbox") {
+const targetId = Number(e.target.getAttribute("data-id"));
+const task = taskState.find((task) => task.id === targetId);
+     task.completed = !task.completed; 
+     saveTasks();
+     renderTasks();
+}
+});
+renderTasks();
