@@ -162,8 +162,8 @@ function renderProjects(dataArray) {
 // Initial render
 renderProjects(projectsData);
 // Real-time search
-searchInput.addEventListener("input", () => {
-
+function searchProjects() {
+     console.log("Searching...");
     const searchTerm = searchInput.value.toLowerCase();
 
     const filteredProjects = projectsData.filter((project) => {
@@ -171,9 +171,10 @@ searchInput.addEventListener("input", () => {
     });
 
     renderProjects(filteredProjects);
-
-});
-
+    
+}
+ const debouncedSearch = debounce(searchProjects, 300);
+ searchInput.addEventListener("input", debouncedSearch);
 
 // DAY 19 - Event Delegation
 dynamicGrid.addEventListener("click", (e) => {
@@ -343,3 +344,12 @@ const task = taskState.find((task) => task.id === targetId);
 }
 });
 renderTasks();
+function debounce(func, delay) {
+let timeout;
+ return function (...args) {
+   clearTimeout(timeout);
+   timeout = setTimeout(() => {
+      func.apply(this, args);
+      }, delay);
+    };
+}
