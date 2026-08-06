@@ -1,27 +1,80 @@
-📅 Day 21/50 – Performance Engineering (Debouncing & Closures)
+🗓️ Day 22: Advanced DOM & The Intersection Observer (Scroll Animations)
+🎯 Problem Statement
 
-Today’s challenge focused on Performance Engineering by implementing a custom Debounce Utility using Vanilla JavaScript. 🚀
+Modern web applications don't render every animation using heavy scroll event listeners. Instead, they use the browser's highly optimized Intersection Observer API to detect when elements enter the viewport. Today's goal was to enhance the Synexus platform with smooth, performant scroll animations by combining JavaScript's Intersection Observer with CSS transitions.
 
-Instead of executing the search logic on every keystroke, I optimized the application by delaying execution until the user stops typing for a brief period. This approach is widely used in production applications to reduce unnecessary computations and API requests, resulting in a smoother and more efficient user experience.
-
-💡 What I Built
-Engineered a reusable Higher-Order Function called debounce().
-Implemented Closures to preserve timer state between function calls.
-Used setTimeout() and clearTimeout() to control function execution.
-Refactored the Real-Time Search feature from Day 15 to use the debounced function.
-Improved application performance by preventing redundant search executions during rapid typing.
+🚀 Features Implemented
+Added reusable .hidden and .show utility classes.
+Animated sections and cards as they entered the viewport.
+Used the Intersection Observer API instead of expensive scroll event listeners.
+Combined CSS transitions with JavaScript class toggling.
+Added premium scroll animations to major sections of the Synexus landing page.
 🛠️ Technologies Used
 HTML5
 CSS3
 Vanilla JavaScript (ES6)
+Intersection Observer API
 📚 Concepts Learned
-Higher-Order Functions
-Closures & Lexical Scoping
-Debouncing
-setTimeout() & clearTimeout()
-Function Context with apply()
-Performance Optimization Techniques
+Intersection Observer API
+Viewport detection
+CSS Transitions
+opacity
+transform: translateY()
+Class manipulation using JavaScript
+Browser-optimized animations
+Performance-friendly UI effects
+💻 Implementation
+CSS Animation States
 
-This challenge strengthened my understanding of how modern web applications optimize user interactions and efficiently manage expensive operations before integrating with backend APIs.
+Created reusable animation utility classes:
 
-#JavaScript #WebDevelopment #Frontend #VanillaJS #PerformanceOptimization #Debouncing #Closures #100DaysOfCode #Synexus #LearningInPublic
+.hidden
+opacity: 0
+transform: translateY(30px)
+transition: all 0.6s ease-out
+.show
+opacity: 1
+transform: translateY(0)
+HTML Preparation
+
+Applied the .hidden class to multiple sections including:
+
+About
+Initiatives
+Core Team
+Profile Cards
+Membership Form
+Testimonials
+Task Tracker
+JavaScript Logic
+
+Built an IntersectionObserver to monitor every hidden element.
+
+When an element entered the viewport:
+
+Checked entry.isIntersecting
+Added the .show class
+Triggered the CSS transition automatically
+
+Observed all hidden elements using:
+
+document.querySelectorAll(".hidden")
+observer.observe(element)
+🧠 Challenges Faced
+Understanding how the Intersection Observer differs from traditional scroll event listeners.
+Ensuring dynamically rendered initiative cards also participated in the animation.
+Learning the relationship between CSS transitions and JavaScript class injection.
+Testing viewport-based animations while scrolling through the page.
+🎓 Key Takeaways
+Learned why Intersection Observer is preferred over window.scroll for modern web applications.
+Understood how browsers efficiently detect element visibility.
+Improved UI polish without using animation libraries.
+Built reusable animation classes that can be applied anywhere in the project.
+Gained practical experience with one of the most commonly used browser APIs in frontend development.
+📸 Preview
+Smooth fade-in animations while scrolling.
+Sections slide upward as they become visible.
+Responsive and lightweight implementation with no external libraries.
+🏆 Outcome
+
+Successfully implemented performant scroll-triggered animations using the Intersection Observer API, creating a more engaging and professional user experience while following modern frontend development best practices.
