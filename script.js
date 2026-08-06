@@ -141,8 +141,8 @@ function renderProjects(dataArray) {
                 ? "active-project"
                 : "completed-project";
 
-        const card = `
-    <div class="initiative-card ${statusClass}">
+const card = `
+    <div class="initiative-card hidden ${statusClass}">
         <h3>${project.title}</h3>
         <p>${project.description}</p>
         <span>${project.status}</span>
@@ -161,6 +161,7 @@ function renderProjects(dataArray) {
 
 // Initial render
 renderProjects(projectsData);
+
 // Real-time search
 function searchProjects() {
      console.log("Searching...");
@@ -353,3 +354,19 @@ let timeout;
       }, delay);
     };
 }
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+
+            // Stop observing after the first animation
+            observer.unobserve(entry.target);
+        }
+    });
+});
+
+const hiddenElements = document.querySelectorAll(".hidden");
+
+hiddenElements.forEach((element) => {
+    observer.observe(element);
+});
