@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synexus APP</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -14,10 +14,10 @@
         <nav>
             <img src="Synexus.png" alt="synexus community Logo" class="logo">
             <ul class="nav-links">
-                <li><a href="#Home">Home</a></li>
-                <li><a href="#About">About</a></li>
-                <li><a href="#Initiatives">Initiatives</a></li>
-                <li><a href="#CoreTeam">Core Team</a></li>
+                <li><a href="#/" class = "nav-link">Home</a></li>
+                <li><a href="#/about" class="nav-link">About</a></li>
+                <li><a href="#/initiatives" class="nav-link">Initiatives</a></li>
+                <li><a href="#/core-team" class="nav-link">Core Team</a></li>
             </ul>
            <button id="theme-toggle" aria-label="Toggle Theme">
                  🌙
@@ -27,88 +27,10 @@
         </button>
         </nav>
         </header>
-        <main id="main-content">
-            <section id ="Home" class="hero">
-                <h1> Empowering the next generation of engineers</h1>
-                <a href = "#GetStarted" class ="Hero-button">Get Started</a>
-                </section> 
-                <section id="About" class="hidden">
-                    <h2>About Synexus</h2>
-                    <p>Synexus is a platform that connects aspiring engineers with industry professionals, providing mentorship, resources, and opportunities to help them succeed in their careers.</p>
-                </section>
-                <section id="Initiatives" class="hidden">
-                    <h2> Our Initiatives</h2>
-                    <input
-                    type="text"
-                    id="search-projects"
-                    placeholder="Search initiatives...">
-                    <div class="initiatives-grid" id="dynamic-grid">
-                        </div>
-                </section>
-                <section id="CoreTeam" class="hidden">
-                    <h2> Core Team</h2>
-                    <div class="team-grid">
-                        <div class="profile-card hidden">
-                            <img src="member 1.png" alt="portrait of core team Member 1">
-                            <h3> Member 1</h3>
-                            <p>Chief Executive Officer </p>
-                            <a href="https://www.linkedin.com/in/member1" target="_blank">LinkedIn</a>
-                        </div>
-                        <div class="profile-card hidden">
-                            <img src="member 1.png" alt="portrait of core team Member 2">
-                            <h3> Member 2</h3>
-                            <p>Chief Technology Officer</p>
-                            <a href="https://www.linkedin.com/in/member2" target="_blank">LinkedIn</a>
-                        </div>
-                        <div class="profile-card hidden">
-                            <img src="member 1.png" alt="portrait of core team Member 3">
-                            <h3> Member 3</h3>
-                            <p>Chief Marketing Officer</p>
-                            <a href="https://www.linkedin.com/in/member3" target="_blank">LinkedIn</a>
-                        </div>
-                    </div>
-                </section>
-                    <section id="GetStarted" class="membership-form hidden" >
-                    <h2> Membership application </h2>
-                    <form>
-                        <label for="full-name">Name:</label>
-                        <input type="text" id="full-name" name="full-name" required>  
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                        <label for="why-join">Why do you want to join Synexus?</label>
-                        <textarea id="why-join" name="why-join" rows="5" required></textarea>
-                        <button type="submit">Submit Application</button>
-                        <p id="save-status"></p>
-                    </form>
-                </section>
-                <section class="testimonials hidden">
-                            <h2>Community Testimonials</h2>
-                            <div id="testimonial-container">
-                                <h3 id="member-name"></h3>
-                                <p id="member-quote"></p>
-                            </div>
-                            <div class="testimonial-controls">
-                                   <button id="prev-btn">← Previous</button>
-                                   <button id="next-btn">Next →</button>
-                            </div>
-                </section>
-                <section class="task-tracker hidden">
-    <h2>Roadmap Progress</h2>
+        <main id="app-root">
+            </main>
+            <section class="github-lookup">
 
-    <div class="task-input-area">
-        <input
-            type="text"
-            id="task-input"
-            placeholder="Enter a new task..."
-        >
-
-        <button id="add-task-btn">
-            Add Task
-        </button>
-    </div>
-
-    <ul id="task-list"></ul>
-</section>
                 <footer>
                     <p>© 2026 Synexus Community</p>
                     <p> <a href="https://www.linkedin.com/company/synexus-core/posts/?feedView=all">Follow us on LinkedIn</a> </p>
@@ -117,7 +39,7 @@
                 </footer>
                     
 
-        </main>
+        
 <div class="modal-overlay">
     <div class="modal">
         <button class="close-modal">&times;</button>

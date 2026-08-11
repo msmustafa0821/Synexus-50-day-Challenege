@@ -1,3 +1,4 @@
+/*
 const savedTheme = localStorage.getItem("synexus_theme");
 
 if (savedTheme === "dark") {
@@ -172,6 +173,9 @@ function searchProjects() {
     });
 
     renderProjects(filteredProjects);
+    document.querySelectorAll(".initiative-card.hidden").forEach((element) => {
+    observer.observe(element);
+});
     
 }
  const debouncedSearch = debounce(searchProjects, 300);
@@ -370,3 +374,123 @@ const hiddenElements = document.querySelectorAll(".hidden");
 hiddenElements.forEach((element) => {
     observer.observe(element);
 });
+const taskCards = document.querySelectorAll(".task-card");
+
+taskCards.forEach((card) => {
+
+    card.addEventListener("dragstart", () => {
+        card.classList.add("is-dragging");
+    });
+
+    card.addEventListener("dragend", () => {
+        card.classList.remove("is-dragging");
+    });
+
+});
+const columns = document.querySelectorAll(".column");
+
+columns.forEach((column) => {
+
+    column.addEventListener("dragover", (e) => {
+        e.preventDefault();
+    });
+
+    column.addEventListener("drop", () => {
+
+        const draggedElement = document.querySelector(".is-dragging");
+
+        if (draggedElement) {
+            column.appendChild(draggedElement);
+        }
+
+    });
+
+});
+*/
+const appRoot = document.querySelector("#app-root");
+
+async function router() {
+    const path = window.location.pathname;
+
+const routes = {
+    "/": `
+        <section>
+            <h1>Welcome to Synexus</h1>
+            <p>This is the Home page.</p>
+        </section>
+    `,
+
+    "/about": `
+        <section>
+            <h1>About Synexus</h1>
+            <p>This is the About page.</p>
+        </section>
+    `,
+
+    "/initiatives": `
+        <section>
+            <h1>Our Initiatives</h1>
+            <p>This is the Initiatives page.</p>
+        </section>
+    `,
+
+    "/core-team": `
+        <section>
+            <h1>Synexus Core Team</h1>
+            <p>This is the Core Team page.</p>
+        </section>
+    `
+};
+    const view = routes[path];
+
+    appRoot.innerHTML = view || `
+        <section class="not-found">
+            <h1>404</h1>
+            <p>Page not found.</p>
+        </section>
+    `;
+}
+router();
+document.addEventListener("click", (e) => {
+    const link = e.target.closest(".nav-link");
+
+    if (!link) return;
+
+    e.preventDefault();
+
+    const href = link.getAttribute("href");
+
+    window.history.pushState({}, "", href);
+
+    router();
+});
+window.addEventListener("popstate", router);
+const themeToggle = document.querySelector("#theme-toggle");
+
+const savedTheme = localStorage.getItem("synexus_theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-theme");
+    themeToggle.textContent = "☀️";
+} else {
+    themeToggle.textContent = "🌙";
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    if (document.body.classList.contains("dark-theme")) {
+        localStorage.setItem("synexus_theme", "dark");
+        themeToggle.textContent = "☀️";
+    } else {
+        localStorage.setItem("synexus_theme", "light");
+        themeToggle.textContent = "🌙";
+    }
+});
+async function getDeveloperProfile(username) {
+    try {
+
+    } catch (error) {
+
+    }
+}
