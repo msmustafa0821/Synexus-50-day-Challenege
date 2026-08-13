@@ -523,3 +523,175 @@ textarea:focus-visible {
 #dev-profile-card h3 {
     margin: 15px 0 8px;
 }
+/* ===============================
+   PROPOSAL FORM
+================================ */
+
+.proposal-section {
+    max-width: 850px;
+    margin: 70px auto;
+    padding: 40px;
+    text-align: center;
+
+    background: var(--bg-color);
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid rgba(37, 99, 235, 0.12);
+}
+
+.proposal-section h2 {
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+/* Form layout */
+
+#proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* Inputs */
+
+#proposal-form input,
+#proposal-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    background: var(--bg-color);
+    color: var(--text-color);
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.2s ease;
+}
+
+#proposal-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+/* Focus effect */
+
+#proposal-form input:focus,
+#proposal-form textarea:focus {
+    border-color: var(--primary-color);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+
+    transform: translateY(-1px);
+}
+
+/* Submit button */
+
+#proposal-submit {
+    padding: 14px 24px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--primary-color);
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+#proposal-submit:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.25);
+}
+
+#proposal-submit:active {
+    transform: translateY(0);
+}
+
+/* Disabled while submitting */
+
+#proposal-submit:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Success / error message */
+
+#proposal-message {
+    margin-top: 20px;
+
+    font-weight: 600;
+
+    color: #16a34a;
+}
+
+/* ===============================
+   DARK MODE
+================================ */
+
+.dark-theme .proposal-section {
+    background: #111827;
+
+    border-color: rgba(96, 165, 250, 0.15);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme #proposal-form input,
+.dark-theme #proposal-form textarea {
+    background: #1f2937;
+    color: #f9fafb;
+    border-color: #374151;
+}
+
+.dark-theme #proposal-form input::placeholder,
+.dark-theme #proposal-form textarea::placeholder {
+    color: #9ca3af;
+}
+
+.dark-theme #proposal-form input:focus,
+.dark-theme #proposal-form textarea:focus {
+    border-color: var(--primary-color);
+}
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .proposal-section {
+        margin: 40px 15px;
+        padding: 25px 18px;
+    }
+
+    .proposal-section h2 {
+        font-size: 1.6rem;
+    }
+
+}

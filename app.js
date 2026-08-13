@@ -1005,6 +1005,30 @@ function router() {
                 </div>
 
             </section>
+            <section class="proposal-section">
+    <h2>Propose an Initiative</h2>
+
+    <form id="proposal-form">
+        <input
+            type="text"
+            id="proposal-title"
+            placeholder="Initiative title"
+            required
+        >
+
+        <textarea
+            id="proposal-description"
+            placeholder="Describe your initiative"
+            required
+        ></textarea>
+
+        <button type="submit" id="proposal-submit">
+            Submit Proposal
+        </button>
+    </form>
+
+    <p id="proposal-message"></p>
+</section>
         `,
 
      "/core-team": `
@@ -1021,10 +1045,6 @@ function router() {
         id="github-username"
         placeholder="Enter GitHub username"
     >
-
-    <button id="search-dev-btn">
-        Lookup
-    </button>
 
     <div id="dev-profile-card"></div>
 
@@ -1160,6 +1180,7 @@ if (path === "/about") {
 
 if (path === "/initiatives") {
     initInitiativesPage();
+    initProposalForm();
     initScrollObserver();
 }
 
@@ -1170,6 +1191,86 @@ if (path === "/core-team") {
     initTestimonials();
     initScrollObserver();
 }
+}
+
+// ===============================
+// PROPOSAL FORM
+// ===============================
+
+function initProposalForm() {
+    const form = document.querySelector("#proposal-form");
+
+    if (!form) return;
+
+    const titleInput =
+        document.querySelector("#proposal-title");
+
+    const descriptionInput =
+        document.querySelector("#proposal-description");
+
+    const submitButton =
+        document.querySelector("#proposal-submit");
+
+    const message =
+        document.querySelector("#proposal-message");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const newInitiative = {
+            title: titleInput.value.trim(),
+            body: descriptionInput.value.trim(),
+            userId: 1
+        };
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        message.textContent = "";
+
+        try {
+            const response = await fetch(
+                "https://jsonplaceholder.typicode.com/posts",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-type":
+                            "application/json; charset=UTF-8"
+                    },
+
+                    body: JSON.stringify(newInitiative)
+                }
+            );
+
+            const data = await response.json();
+
+            if (response.status === 201) {
+                message.textContent =
+                    `Proposal submitted successfully! ID: ${data.id}`;
+
+                form.reset();
+            } else {
+                message.textContent =
+                    "Failed to submit proposal.";
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Proposal submission error:",
+                error
+            );
+
+            message.textContent =
+                "Something went wrong. Please try again.";
+
+        } finally {
+
+            submitButton.disabled = false;
+            submitButton.textContent =
+                "Submit Proposal";
+        }
+    });
 }
 // ===============================
 // ROUTER NAVIGATION
@@ -1188,13 +1289,13 @@ function initApp() {
     // Global features — initialized once
     initThemeToggle();
     initMobileMenu();
-
+}
     // Router
     initRouter();
 
     // Load current route
     router();
-}
+
 
 // ===============================
 // START APPLICATION
@@ -1213,9 +1314,6 @@ function initGitHubLookup() {
     const githubUsername =
         document.querySelector("#github-username");
 
-    const searchDevBtn =
-        document.querySelector("#search-dev-btn");
-
     const profileCard =
         document.querySelector("#dev-profile-card");
 
@@ -1225,7 +1323,6 @@ function initGitHubLookup() {
 
     if (
         !githubUsername ||
-        !searchDevBtn ||
         !profileCard ||
         !reposGrid
     ) {
@@ -1233,21 +1330,30 @@ function initGitHubLookup() {
     }
 
 
-    if (searchDevBtn.dataset.initialized === "true") {
+if (githubUsername.dataset.initialized === "true") {
+    return;
+}
+
+githubUsername.dataset.initialized = "true";
+   let controller;
+   async function getDeveloperProfile(username) {
+
+    if (username === "") {
+        profileCard.innerHTML = "";
+        reposGrid.innerHTML = "";
         return;
     }
+    if (controller) {
+    controller.abort();
+}
 
-    searchDevBtn.dataset.initialized = "true";
+controller = new AbortController();
 
+    try {
 
-    async function getDeveloperProfile(username) {
-
-        try {
-
-            profileCard.innerHTML = `
-                <p>Fetching data...</p>
-            `;
-
+        profileCard.innerHTML = `
+            <p>Fetching data...</p>
+        `;
             reposGrid.innerHTML = "";
 
 
@@ -1255,18 +1361,29 @@ function initGitHubLookup() {
             // FETCH PROFILE
             // ===============================
 
-            const response =
-                await fetch(
-                    `https://api.github.com/users/${username}`
-                );
-
+        const response =
+    await fetch(
+        `https://api.github.com/users/${username}`,
+        {
+            signal: controller.signal
+        }
+    );
 
             if (!response.ok) {
-                throw new Error(
-                    "GitHub user not found"
-                );
-            }
 
+    if (
+        response.status === 403 ||
+        response.status === 429
+    ) {
+        throw new Error(
+            "API Rate Limit exceeded. Please wait a moment."
+        );
+    }
+
+    throw new Error(
+        "GitHub user not found"
+    );
+}
 
             const data =
                 await response.json();
@@ -1296,14 +1413,25 @@ function initGitHubLookup() {
             // FETCH REPOSITORIES
             // ===============================
 
-            const reposResponse =
-                await fetch(
-                    `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`
-                );
+const reposResponse =
+    await fetch(
+        `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
+        {
+            signal: controller.signal
+        }
+    );
 
+if (
+    reposResponse.status === 403 ||
+    reposResponse.status === 429
+) {
+    throw new Error(
+        "API Rate Limit exceeded. Please wait a moment."
+    );
+}
 
-            const repos =
-                await reposResponse.json();
+const repos =
+    await reposResponse.json();
 
 
             // ===============================
@@ -1355,30 +1483,32 @@ function initGitHubLookup() {
 
         } catch (error) {
 
-            profileCard.innerHTML = `
-                <p>${error.message}</p>
-            `;
-
-            reposGrid.innerHTML = "";
-
-        }
-
+    if (error.name === "AbortError") {
+        return;
     }
 
+    profileCard.innerHTML = `
+        <p>${error.message}</p>
+    `;
 
-    searchDevBtn.addEventListener("click", () => {
+    reposGrid.innerHTML = "";
 
-        const username =
-            githubUsername.value.trim();
-
-
-        if (username === "") {
-            return;
-        }
+}
+}
 
 
-        getDeveloperProfile(username);
+   const debouncedSearch = debounce(() => {
 
-    });
+    const username =
+        githubUsername.value.trim();
+
+    getDeveloperProfile(username);
+
+}, 500);
+
+githubUsername.addEventListener(
+    "input",
+    debouncedSearch
+);
 
 }
