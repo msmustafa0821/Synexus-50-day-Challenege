@@ -1,168 +1,193 @@
-# 🚀 Synexus Web Development Challenge — Days 28 & 29
+# 🚀 Synexus Web Development Challenge — Day 30 to Day 34
 
-## 🔍 Day 28 — Real-Time API Search
+## Day 30 — Full CRUD Operations
 
 ### 🎯 Objective
 
-Modernize the Synexus platform with a **Real-Time API Search** feature that fetches GitHub developer data while preventing excessive API requests.
+Complete the full CRUD data cycle by implementing **PUT (Update)** and **DELETE (Destroy)** requests using the native Fetch API.
 
-### 🛠️ Technologies & Concepts
+### 🛠️ Implemented
 
-* Vanilla JavaScript (ES6+)
-* GitHub REST API
-* `fetch()`
-* `async/await`
-* Debouncing
-* `AbortController`
-* API error handling
+* Added `PUT` requests for updating existing initiatives.
+* Added `DELETE` requests for removing initiatives.
+* Configured HTTP method and request headers.
+* Sent updated data using `JSON.stringify()`.
+* Added defensive confirmation before destructive actions.
+* Integrated API operations into the modular JavaScript structure.
+* Used RESTful API endpoints for individual resources.
+
+### 🌐 Live Server Changes
+
+* Initiatives can now be **updated**.
+* Initiatives can now be **deleted**.
+* Update actions modify the selected resource.
+* Delete actions require confirmation before execution.
+* The UI now supports the complete CRUD workflow.
+
+### 🧠 Concepts Learned
+
+* HTTP `PUT` and `DELETE`
+* RESTful endpoints
+* Request headers
+* JSON request bodies
+* Destructive-action confirmation
+* CRUD architecture
+
+---
+
+## Day 31 — Data Scaling: Pagination & Infinite Scroll
+
+### 🎯 Objective
+
+Improve data loading performance by introducing **pagination and infinite scrolling** instead of loading a large dataset at once.
+
+### 🛠️ Implemented
+
+* Added paginated API requests.
+* Introduced page-based data loading.
+* Implemented `IntersectionObserver`.
+* Automatically loads additional data when the user reaches the bottom.
+* Dynamically appends newly fetched items to the existing list.
+* Prevented unnecessary repeated requests.
+
+### 🌐 Live Server Changes
+
+* More initiatives appear automatically as you scroll.
+* The page continuously loads additional data.
+* Users don't need to click a "Next Page" button.
+* The interface can handle larger datasets more efficiently.
+
+### 🧠 Concepts Learned
+
+* Pagination
+* Infinite scrolling
+* `IntersectionObserver`
 * Dynamic DOM rendering
-
-### ⚙️ What I Built
-
-* Added real-time GitHub username search.
-* Used **debouncing** to wait before sending an API request.
-* Used `AbortController` to cancel previous requests when a new search starts.
-* Fetched GitHub profile information dynamically.
-* Fetched and displayed the user's latest repositories.
-* Added loading and empty states.
-* Added handling for GitHub `403` / `429` rate-limit responses.
-* Integrated the feature into the existing SPA architecture.
-
-### 🧠 Key Learning
-
-Instead of sending an API request on every keystroke:
-
-```text
-User types
-    ↓
-Debounce delay
-    ↓
-API Request
-    ↓
-GitHub Response
-    ↓
-Update UI
-```
-
-This reduces unnecessary requests and provides a smoother search experience.
+* Efficient API consumption
+* Large dataset handling
 
 ---
 
-# 📤 Day 29 — Two-Way Data Streams (POST Requests)
+## Day 32 — Client-Side Caching
 
 ### 🎯 Objective
 
-Move from only **consuming API data** to also **sending user-generated data** using HTTP `POST` requests.
+Reduce unnecessary API requests by storing previously fetched data on the client.
 
-### 🛠️ Technologies & Concepts
+### 🛠️ Implemented
 
-* Vanilla JavaScript
-* `fetch()`
-* HTTP `POST`
-* HTTP Headers
-* `Content-Type`
-* JSON serialization
-* `JSON.stringify()`
-* `async/await`
-* HTTP `201 Created`
-* UI loading states
+* Created a client-side cache using JavaScript `Map`.
+* Stored fetched initiative data in memory.
+* Checked the cache before making repeated requests.
+* Reused previously retrieved data when available.
+* Integrated caching into the API module.
 
-### ⚙️ What I Built
+### 🌐 Live Server Changes
 
-Added a **"Propose an Initiative"** form to the Initiatives page.
+* Previously fetched data can be reused.
+* Repeated operations can avoid unnecessary network requests.
+* API interactions become more efficient.
+* The application feels faster when accessing cached data.
 
-Users can enter:
+### 🧠 Concepts Learned
 
-* Initiative title
-* Initiative description
-
-The form then sends the data to JSONPlaceholder using a `POST` request.
-
-### 📦 POST Payload
-
-```js
-const newInitiative = {
-    title: titleInput.value.trim(),
-    body: descriptionInput.value.trim(),
-    userId: 1
-};
-```
-
-### 🌐 Request Configuration
-
-```js
-{
-    method: "POST",
-    headers: {
-        "Content-type": "application/json; charset=UTF-8"
-    },
-    body: JSON.stringify(newInitiative)
-}
-```
-
-### 🛡️ Defensive UI
-
-Implemented the bonus challenge:
-
-* Submit button becomes disabled during the request.
-* Button text changes to **"Submitting..."**.
-* `finally` restores the button after the request completes.
-* Successful requests display a confirmation message.
-* Form resets after a `201 Created` response.
-
-### 🎨 UI Improvements
-
-Added custom CSS for:
-
-* Modern proposal card
-* Styled inputs and textarea
-* Focus animations
-* Synexus-themed submit button
-* Success feedback
-* Dark-mode support
-* Mobile responsiveness
-
-### 🧠 Key Learning
-
-Day 29 introduced the complete two-way API flow:
-
-```text
-User Input
-    ↓
-JavaScript Object
-    ↓
-JSON.stringify()
-    ↓
-POST Request
-    ↓
-Server
-    ↓
-JSON Response
-    ↓
-UI Feedback
-```
-
-> **Note:** JSONPlaceholder is being used as a mock API, so the submitted proposal demonstrates the complete POST workflow but is not permanently stored in the Synexus database.
+* Client-side caching
+* JavaScript `Map`
+* Cache lookup
+* API optimization
+* Reducing network requests
+* Data reuse
 
 ---
 
-## 🏆 Days 28–29 Outcome
+## Day 33 — Modular JavaScript Architecture
 
-Across these two days, Synexus evolved from primarily **reading external API data** to supporting both **API consumption and API communication**.
+### 🎯 Objective
 
-### Skills Strengthened
+Improve the maintainability of the Synexus application by separating JavaScript functionality into reusable modules.
 
-* Real-time API integration
-* Debounced search
-* Request cancellation
-* REST API concepts
-* GET vs POST
-* JSON serialization
-* HTTP headers
-* Async JavaScript
-* API error handling
-* Loading states
-* Responsive UI development
-* Defensive frontend programming
+### 🛠️ Implemented
 
-**Days 28 & 29 — Completed ✅**
+* Separated API functionality into `api.js`.
+* Moved reusable utilities into `utils.js`.
+* Imported functions using ES Modules.
+* Organized application logic inside `main.js`.
+* Removed unnecessary dependency on the previous monolithic `app.js`.
+* Connected modules using `import` and `export`.
+
+### 🌐 Live Server Changes
+
+* Existing features continue working through the new modular structure.
+* Theme toggle, search, CRUD operations and other functionality remain connected.
+* The application codebase is easier to maintain and extend.
+
+### 🧠 Concepts Learned
+
+* ES Modules
+* `import` / `export`
+* Separation of concerns
+* Reusable functions
+* Modular architecture
+* Maintainable JavaScript
+
+---
+
+## Day 34 — API Reliability & Retry Handling
+
+### 🎯 Objective
+
+Make API communication more reliable by handling temporary network failures and retrying failed requests.
+
+### 🛠️ Implemented
+
+* Created a reusable `fetchWithRetry()` utility.
+* Added retry logic around API requests.
+* Added controlled retry attempts.
+* Added delay between failed attempts.
+* Centralized retry behavior inside the utility module.
+* Integrated the retry wrapper with API operations.
+
+### 🌐 Live Server Changes
+
+* API requests can automatically retry after temporary failures.
+* Temporary network problems are handled more gracefully.
+* API failures no longer immediately terminate the operation.
+* The application becomes more resilient to unreliable requests.
+
+### 🧠 Concepts Learned
+
+* Retry mechanisms
+* Network error handling
+* Async/await
+* Promise-based APIs
+* Error handling
+* Resilient frontend architecture
+
+---
+
+# 📊 Days 30–34 Summary
+
+| Day    | Feature              | Main Concept                      |
+| ------ | -------------------- | --------------------------------- |
+| **30** | Full CRUD            | PUT & DELETE                      |
+| **31** | Infinite Scroll      | Pagination & IntersectionObserver |
+| **32** | Client Cache         | JavaScript Map & API optimization |
+| **33** | Modular Architecture | ES Modules                        |
+| **34** | Retry Handling       | API reliability & error recovery  |
+
+## 🏆 Milestone
+
+Across Days **30–34**, Synexus evolved from a frontend application into a more **scalable, modular, and resilient web application**.
+
+The project now demonstrates:
+
+* ✅ Complete CRUD operations
+* ✅ Infinite scrolling
+* ✅ Client-side caching
+* ✅ Modular JavaScript architecture
+* ✅ API retry handling
+* ✅ Better network efficiency
+* ✅ Improved error resilience
+* ✅ Scalable frontend architecture
+
+**Next milestone: Continue building advanced frontend engineering patterns and prepare Synexus for production-level functionality.**
