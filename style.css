@@ -695,3 +695,36 @@ textarea:focus-visible {
     }
 
 }
+/* ===============================
+   DAY 31 - INFINITE SCROLL FEED
+   =============================== */
+
+#data-feed {
+    display: grid;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feed-card {
+    padding: 20px;
+    border-radius: 12px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feed-card h3 {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.feed-card p {
+    line-height: 1.6;
+}
+
+#scroll-sentinel {
+    text-align: center;
+    padding: 25px;
+    margin: 20px 0;
+    font-weight: 600;
+}

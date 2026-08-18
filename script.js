@@ -487,10 +487,3 @@ themeToggle.addEventListener("click", () => {
         themeToggle.textContent = "🌙";
     }
 });
-async function getDeveloperProfile(username) {
-    try {
-
-    } catch (error) {
-
-    }
-}
